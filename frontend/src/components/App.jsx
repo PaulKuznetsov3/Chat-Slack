@@ -1,17 +1,38 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Routes, Route, Navigate, useLocation,
+} from 'react-router-dom';
 import Login from '../routes/Login';
 import Chat from '../routes/Chat';
 import ErrorPage from '../routes/ErrorPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthProvider from '../contexts/AuthProvider';
+import useAuth from '../hooks/useAuth';
+
+const PrivateRoute = ({ children }) => {
+  const auth = useAuth();
+  const location = useLocation();
+  return (
+    auth.user ? children : <Navigate to="/login" state={{ from: location }} />
+  );
+};
 
 const App = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="login" element={<Login />} />
-      <Route path="/" element={<Chat />} />
-      <Route path="*" element={<ErrorPage />} />
-    </Routes>
-  </BrowserRouter>
+  <AuthProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<ErrorPage />} />
+        <Route
+          path="/"
+          element={(
+            <PrivateRoute>
+              <Chat />
+            </PrivateRoute>
+          )}
+        />
+      </Routes>
+    </BrowserRouter>
+  </AuthProvider>
 );
 
 export default App;

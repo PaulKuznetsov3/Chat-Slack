@@ -17,13 +17,10 @@ const schema = Yup.object().shape({
 
 const FormInrut = () => {
   const { t } = useTranslation();
-  console.log(useTranslation());
   const [authError, setAuthError] = useState(false);
   const inputRef = useRef();
   const navigate = useNavigate();
-  console.log(navigate);
   const { logIn } = useAuth();
-  console.log(useAuth());
   return (
     <Formik
       validationSchema={schema}
@@ -35,8 +32,7 @@ const FormInrut = () => {
             if (!response.data.token) {
               return;
             }
-            const name = response.data.username;
-            logIn({ username: name });
+            logIn({ username: response.data.username, token: response.data.token });
             navigate('/');
           })
           .catch((error) => {

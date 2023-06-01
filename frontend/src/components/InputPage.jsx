@@ -20,7 +20,7 @@ const InputPage = () => (
                     <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
                       <img src={avatar} className="rounded-circle" alt="Войти" />
                     </div>
-                    <FormInrut />
+                    <FormInrut className="col-12 col-md-6 mt-3 mt-mb-0" />
                   </div>
                   <div className="card-footer p-4">
                     <div className="text-center">

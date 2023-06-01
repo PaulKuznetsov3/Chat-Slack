@@ -2,14 +2,15 @@ import React, { useState, useCallback, useMemo } from 'react';
 import AuthContext from './AuthContext';
 
 const AuthProvider = ({ children }) => {
-  const savedUserData = JSON.parse(localStorage.getItem('username'));
+  const savedUserData = JSON.parse(localStorage.getItem('user'));
   console.log(localStorage);
   const [user, setUser] = useState(
-    savedUserData ? { username: savedUserData.username } : null,
+    savedUserData ? { username: savedUserData.username, token: savedUserData.token } : null,
   );
   const logIn = useCallback((userData) => {
-    localStorage.setItem('username', JSON.stringify(userData));
-    setUser({ username: userData.username });
+    localStorage.setItem('user', JSON.stringify(userData));
+    console.log('UD', userData);
+    setUser({ username: userData.username, token: userData.token });
   }, []);
 
   const logOut = useCallback(() => {

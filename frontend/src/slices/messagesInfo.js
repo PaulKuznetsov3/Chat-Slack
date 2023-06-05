@@ -8,13 +8,18 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: 'massegesInfo',
+  name: 'messagesInfo',
   initialState,
+  reducers: {
+    addMessage: (state, { payload }) => {
+      state.messages.push(payload);
+    },
+  },
   extraReducers: (builder) => {
     console.log(channelsInfoActions);
     builder
       .addCase(channelsInfoActions.fetchData.fulfilled, (state, { payload }) => {
-        state.masseges = payload.masseges;
+        state.messages = payload.messages;
       });
   },
 });

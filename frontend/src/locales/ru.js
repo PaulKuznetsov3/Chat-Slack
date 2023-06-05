@@ -6,5 +6,12 @@ export default {
   errors: {
     network: 'Ошибка соединения',
   },
-  enter: 'войти',
+  inputPage: {
+    enter: 'войти',
+  },
+  messages: {
+    messageCount_one: '{{count}} сообщение',
+    messageCount_few: '{{count}} сообщения',
+    messageCount_many: '{{count}} сообщений',
+  },
 };

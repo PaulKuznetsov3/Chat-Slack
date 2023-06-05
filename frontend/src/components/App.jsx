@@ -1,6 +1,7 @@
 import {
   BrowserRouter, Routes, Route, Navigate, useLocation,
 } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Login from '../routes/Login';
 import Chat from '../routes/Chat';
 import ErrorPage from '../routes/ErrorPage';
@@ -28,9 +29,10 @@ const App = () => (
             <PrivateRoute>
               <Chat />
             </PrivateRoute>
-          )}
+            )}
         />
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   </AuthProvider>
 );

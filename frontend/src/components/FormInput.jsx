@@ -14,8 +14,8 @@ const schema = Yup.object().shape({
   username: Yup.string().required(),
   password: Yup.string().required(),
 });
-
 const FormInrut = () => {
+  console.log('t', toast);
   const { t } = useTranslation();
   const [authError, setAuthError] = useState(false);
   const inputRef = useRef();
@@ -37,7 +37,7 @@ const FormInrut = () => {
           })
           .catch((error) => {
             actions.setSubmitting(false);
-            if (error.response?.status === 401) {
+            if (error.response.status === 401) {
               setAuthError(true);
               inputRef.current.select();
             } else {

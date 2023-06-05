@@ -1,16 +1,17 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import channelsInfo, { actions as channelsInfoActions } from './сhannelsInfo';
-import massegesInfo, { actions as massegesInfoActions } from './massegesInfo';
+import messagesInfo, { actions as messagesInfoActions } from './messagesInfo';
 
 const actions = {
   ...channelsInfoActions,
-  ...massegesInfoActions,
+  ...messagesInfoActions,
 };
 
 export {
   actions,
 };
+
 export default combineReducers({
   channelsInfo,
-  massegesInfo,
+  messagesInfo,
 });

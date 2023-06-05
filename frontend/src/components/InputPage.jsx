@@ -34,7 +34,6 @@ const InputPage = () => (
           </div>
         </div>
       </div>
-      <div className="Toastify" />
     </div>
   </div>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { actions } from '../slices';
+import { actions } from '../../slices';
 
 const ChatChannelsList = () => {
   const dicpatch = useDispatch();

@@ -7,15 +7,14 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import routes from '../routes.js';
-import useAuth from '../hooks/useAuth.js';
+import routes from '../../routes.js';
+import useAuth from '../../hooks/useAuth.js';
 
 const schema = Yup.object().shape({
   username: Yup.string().required(),
   password: Yup.string().required(),
 });
 const FormInrut = () => {
-  console.log('t', toast);
   const { t } = useTranslation();
   const [authError, setAuthError] = useState(false);
   const inputRef = useRef();

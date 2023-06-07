@@ -2,8 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Formik } from 'formik';
 import { Form, Button } from 'react-bootstrap';
-import useAuth from '../hooks/useAuth';
-import { useApi } from '../contexts/SocketProvider';
+import useAuth from '../../hooks/useAuth';
+import { useApi } from '../../contexts/SocketProvider';
 
 const MessageForm = ({ currentChannelId }) => {
   const inputRef = useRef();
@@ -24,11 +24,11 @@ const MessageForm = ({ currentChannelId }) => {
             username: user.username,
           };
           await api.sendMessage(newMessage);
+          actions.resetForm();
         } catch (error) {
           actions.setSubmitting(false);
           toast.error('errors.network');
         }
-        actions.resetForm();
       }}
       initialValues={{
         body: '',

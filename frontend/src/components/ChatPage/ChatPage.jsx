@@ -1,36 +1,30 @@
 import { useDispatch } from 'react-redux';
+import { Container } from 'react-bootstrap';
 import React, { useEffect } from 'react';
-import useAuth from '../../hooks/useAuth';
-import { actions } from '../../slices/index';
-import ChatHeader from './ChatHeader';
-import ChatChannels from './ChatChannels';
 import Messages from '../Messages/Messages';
+import useAuth from '../../hooks/useAuth';
+import ChatChannels from './ChatChannels';
+import Modals from '../Modals/Modals';
+import { actions } from '../../slices';
 
 const ChatPage = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
   useEffect(() => {
-    const fetchData = () => {
+    const fetchData = async () => {
       dispatch(actions.fetchData({ Authorization: `Bearer ${user.token}` }));
     };
     fetchData();
   }, [dispatch, user]);
 
   return (
-    <div className="h-100">
-      <div className="h-100" id="chat">
-        <div className="d-flex flex-column h-100">
-          <ChatHeader />
-          <div className="container h-100 my-4 overflow-hidden rounded shadow">
-            <div className="row h-100 bg-white flex-md-row">
-              <ChatChannels />
-              <Messages />
-            </div>
-          </div>
-        </div>
-        <div className="Toastify" />
+    <Container className="container h-100 my-4 overflow-hidden rounded shadow">
+      <div className="row h-100 bg-white flex-md-row">
+        <ChatChannels />
+        <Messages />
+        <Modals />
       </div>
-    </div>
+    </Container>
   );
 };
 

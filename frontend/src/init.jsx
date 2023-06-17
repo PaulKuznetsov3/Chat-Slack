@@ -8,6 +8,7 @@ import { SocketContext } from './contexts/SocketProvider';
 import App from './components/App';
 import resources from './locales/index';
 import reducer, { actions } from './slices/index';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const init = async () => {
   const i18n = i18next.createInstance();
@@ -35,9 +36,17 @@ const init = async () => {
 
   const api = {
     sendMessage: (message) => withConfirm('newMessage', message),
+    sendChannel: (channel) => withConfirm('newChannel', channel),
+    renameChannel: (channel) => withConfirm('renameChannel', channel),
   };
   socket.on('newMessage', (payload) => {
     store.dispatch(actions.addMessage(payload));
+  });
+  socket.on('newChannel', (payload) => {
+    store.dispatch(actions.addChannel(payload));
+  });
+  socket.on('renameChannel', (payload) => {
+    store.dispatch(actions.updateChannel(payload));
   });
 
   return (

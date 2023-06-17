@@ -1,12 +1,16 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { selectors as channelsSelectors } from '../../slices/сhannelsInfo';
+import { selectors as messagesSelectors } from '../../slices/messagesInfo';
 import MessageForm from './MessageForm';
 
 const Messages = () => {
   const { t } = useTranslation();
-  const messages = useSelector((state) => state.messagesInfo.messages);
-  const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
+  const messages = useSelector(messagesSelectors.selectAll);
+  const channels = useSelector(channelsSelectors.selectAll);
+  const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
+  console.log('d', currentChannelId);
   const currentChannel = channels.filter(({ id }) => id === currentChannelId)
     .map(({ name }) => name);
   const messagesChannel = messages.filter((message) => message.channelId === currentChannelId);

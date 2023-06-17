@@ -1,41 +1,39 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  Card, Container, Row, Col,
+} from 'react-bootstrap';
 import avatar from '../../assets/avatar.jpg';
 import FormInrut from './FormInput';
 
-const InputPage = () => (
-  <div className="h-100 bg-light">
-    <div className="h-100">
-      <div className="h-100" id="chat">
-        <div className="d-flex flex-column h-100">
-          <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white">
-            <div className="container">
-              <a className="navbar-brand" href="/">Hexlet Chat</a>
-            </div>
-          </nav>
-          <div className="container-fluid h-100">
-            <div className="row justify-content-center align-content-center h-100">
-              <div className="col-12 col-md-8 col-xxl-6">
-                <div className="card shadow-sm">
-                  <div className="card-body row p-5">
-                    <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                      <img src={avatar} className="rounded-circle" alt="Войти" />
-                    </div>
-                    <FormInrut className="col-12 col-md-6 mt-3 mt-mb-0" />
-                  </div>
-                  <div className="card-footer p-4">
-                    <div className="text-center">
-                      <span>Нет аккаунта?</span>
-                      <a href="/signup">Регистрация</a>
-                    </div>
-                  </div>
-                </div>
+const InputPage = () => {
+  const { t } = useTranslation();
+  return (
+    <Container fluid className="h-100">
+      <Row className="row justify-content-center align-content-center h-100">
+        <Col xs={12} md={8} xxl={6}>
+          <Card className="shadow-sm">
+            <Card.Body className="row p-5">
+              <Col
+                xs={12}
+                md={6}
+                className="d-flex align-items-center justify-content-center"
+              >
+                <img src={avatar} className="rounded-circle" alt="Войти" />
+              </Col>
+              <FormInrut />
+            </Card.Body>
+            <Card.Footer className="p-4">
+              <div className="text-center">
+                <span>{t('inputPage.text')}</span>
+                <a href="/signup">Регистрация</a>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+            </Card.Footer>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default InputPage;

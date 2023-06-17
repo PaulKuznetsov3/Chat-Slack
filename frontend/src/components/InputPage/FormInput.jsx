@@ -59,19 +59,19 @@ const FormInrut = () => {
         isValid,
       }) => (
         <Form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={handleSubmit}>
-          <h1 className="text-center mb-4">{t('enter')}</h1>
+          <h1 className="text-center mb-4">{t('inputPage.enter')}</h1>
           <>
-            <FloatingLabel controlId="floatingUsername" label="Ваш ник" className="mb-3">
+            <FloatingLabel controlId="floatingUsername" label={t('inputPage.label')} className="mb-3">
               <Form.Control required name="username" type="text" placeholder="Ваш ник" autoFocus ref={inputRef} onChange={handleChange} value={values.name} isInvalid={touched.username && authError} />
             </FloatingLabel>
-            <FloatingLabel controlId="floatingPassword" label="Пароль" className="mb-4">
+            <FloatingLabel controlId="floatingPassword" label={t('inputPage.password')} className="mb-4">
               <Form.Control required name="password" type="password" placeholder="Password" onChange={handleChange} value={values.password} isInvalid={touched.password && authError} />
               <Form.Control.Feedback type="invalid" tooltip>
                 {console.log(t('validation.loginFailed'))}
                 {errors && t('validation.loginFailed')}
               </Form.Control.Feedback>
             </FloatingLabel>
-            <button type="submit" disabled={isValid && isSubmitting} className="w-100 mb-3 btn btn-outline-primary">Войти</button>
+            <button type="submit" disabled={isValid && isSubmitting} className="w-100 mb-3 btn btn-outline-primary">{t('inputPage.enter')}</button>
           </>
         </Form>
       )}

@@ -57,7 +57,7 @@ const MessageForm = ({ currentChannelId }) => {
               type="submit"
               className="btn btn-group-vertical border-0"
               variant=""
-              disabled={isDisabled}
+              disabled={isDisabled || values.body.length === 0}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

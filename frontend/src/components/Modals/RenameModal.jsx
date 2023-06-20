@@ -15,8 +15,11 @@ import { useApi } from '../../contexts/SocketProvider';
 import { selectors as channelsSelectors } from '../../slices/сhannelsInfo';
 
 const schema = (channels) => Yup.object().shape({
-  name: Yup.string().required().min(3).max(20)
-    .notOneOf(channels),
+  name: Yup.string()
+    .required('validation.required')
+    .min(3, 'validation.length')
+    .max(20, 'validation.length')
+    .notOneOf(channels, 'validation.unique'),
 });
 
 const RenameModal = ({ handleClose }) => {
@@ -25,11 +28,10 @@ const RenameModal = ({ handleClose }) => {
   const { t } = useTranslation();
   const inputRef = useRef();
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current.select();
   }, []);
   const channels = useSelector(channelsSelectors.selectAll);
   const channelId = useSelector((state) => state.modalsInfo.modal.target);
-  console.log('ch', channelId);
   const [currentChannel] = channels.filter((channel) => channel.id === channelId);
   return (
     <>
@@ -80,9 +82,7 @@ const RenameModal = ({ handleClose }) => {
                   ref={inputRef}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.name === 'name must be at least 3 characters' && t('validation.length')}
-                  {errors.name === 'name is a required field' && t('validation.required')}
-                  {errors.name?.includes('name must not be one of the following values') && t('validation.unique')}
+                  {errors.name && t(`${errors.name}`)}
                 </Form.Control.Feedback>
               </Form.Group>
             </Modal.Body>

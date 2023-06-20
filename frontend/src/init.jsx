@@ -38,6 +38,7 @@ const init = async () => {
     sendMessage: (message) => withConfirm('newMessage', message),
     sendChannel: (channel) => withConfirm('newChannel', channel),
     renameChannel: (channel) => withConfirm('renameChannel', channel),
+    deleteChannel: (channel) => withConfirm('removeChannel', channel),
   };
   socket.on('newMessage', (payload) => {
     store.dispatch(actions.addMessage(payload));
@@ -48,7 +49,9 @@ const init = async () => {
   socket.on('renameChannel', (payload) => {
     store.dispatch(actions.updateChannel(payload));
   });
-
+  socket.on('removeChannel', (payload) => {
+    store.dispatch(actions.removeChannel(payload));
+  });
   return (
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>

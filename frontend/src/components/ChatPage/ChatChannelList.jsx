@@ -27,7 +27,7 @@ const ChatChannelsList = () => {
           : (
             <li key={channel.id} className="nav-item w-100">
               <Dropdown as={ButtonGroup} className="d-flex dropdown btn-group">
-                <Button type="button" onClick={() => dicpatch(selectChannel(channel.id))} variant={channel.id === currentChannelId ? 'secondary' : 'light'} className="w-100 rounded-0 text-start btn">
+                <Button type="button" onClick={() => dicpatch(selectChannel(channel.id))} variant={channel.id === currentChannelId ? 'secondary' : 'light'} className="w-100 text-truncate rounded-0 text-start btn">
                   <span className="me-1">#</span>
                   {channel.name}
                 </Button>

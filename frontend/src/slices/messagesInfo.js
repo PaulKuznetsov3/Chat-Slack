@@ -14,10 +14,16 @@ const slice = createSlice({
     addMessage: messagesAdapter.addOne,
   },
   extraReducers: (builder) => {
-    console.log(channelsInfoActions);
     builder
       .addCase(channelsInfoActions.fetchData.fulfilled, (state, { payload }) => {
         messagesAdapter.addMany(state, payload.messages);
+      })
+      .addCase(channelsInfoActions.removeChannel, (state, { payload }) => {
+        console.log('a', payload);
+        const chennelId = payload;
+        console.log('b', state.entities);
+        const messages = Object.values(state.entities).filter((e) => e.id !== chennelId);
+        messagesAdapter.setAll(state, messages);
       });
   },
 });

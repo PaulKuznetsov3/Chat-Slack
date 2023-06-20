@@ -4,6 +4,7 @@ import {
 import { ToastContainer } from 'react-toastify';
 import Login from '../routes/Login';
 import Chat from '../routes/Chat';
+import Signup from '../routes/Signup';
 import ErrorPage from '../routes/ErrorPage';
 import AuthProvider from '../contexts/AuthProvider';
 import useAuth from '../hooks/useAuth';
@@ -29,6 +30,7 @@ const App = () => (
             <ChatNav />
             <Routes>
               <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
               <Route path="*" element={<ErrorPage />} />
               <Route
                 path="/"

@@ -1,8 +1,8 @@
 import React from 'react';
 import ChatPage from '../components/ChatPage/ChatPage';
 
-const Login = () => (
+const Chat = () => (
   <ChatPage />
 );
 
-export default Login;
+export default Chat;

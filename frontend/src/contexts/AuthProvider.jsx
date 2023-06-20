@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const logOut = useCallback(() => {
-    localStorage.removeItem('username');
+    localStorage.removeItem('user');
     setUser(null);
   }, []);
   const providerData = useMemo(

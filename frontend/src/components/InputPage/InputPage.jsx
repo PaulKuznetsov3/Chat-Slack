@@ -19,14 +19,14 @@ const InputPage = () => {
                 md={6}
                 className="d-flex align-items-center justify-content-center"
               >
-                <img src={avatar} className="rounded-circle" alt="Войти" />
+                <img src={avatar} className="rounded-circle" alt={t('inputPage.enter')} />
               </Col>
               <FormInrut />
             </Card.Body>
             <Card.Footer className="p-4">
               <div className="text-center">
                 <span>{t('inputPage.text')}</span>
-                <a href="/signup">Регистрация</a>
+                <a href="/signup">{t('inputPage.link')}</a>
               </div>
             </Card.Footer>
           </Card>

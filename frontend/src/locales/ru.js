@@ -24,6 +24,7 @@ export default {
       messageCount_one: '{{count}} сообщение',
       messageCount_few: '{{count}} сообщения',
       messageCount_many: '{{count}} сообщений',
+      enterMessage: 'Bведите сообщение...',
     },
     modals: {
       header: 'Добавить канал',
@@ -44,6 +45,15 @@ export default {
       password: 'Пароль',
       repidPassword: 'Подтвердтье пароль',
       button: 'Зарегистрироваться',
+    },
+    nav: {
+      chat: 'Hexlet chat',
+      out: 'Выйти',
+    },
+    errorPage: {
+      notFound: 'Страница не найдена',
+      mainPage: 'Но вы можете перейти',
+      goIn: 'на главную страницу',
     },
   },
 };

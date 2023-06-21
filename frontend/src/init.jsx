@@ -66,14 +66,10 @@ const init = async () => {
     captureUncaught: true,
     captureUnhandledRejections: true,
   };
-  function TestError() {
-    const a = null;
-    return a.hello();
-  }
+  
   return (
     <RollbarProvider config={rollbarConfig}>
       <ErrorBoundary>
-        <TestError />
         <Provider store={store}>
           <I18nextProvider i18n={i18n}>
             <SocketContext.Provider value={{ api }}>

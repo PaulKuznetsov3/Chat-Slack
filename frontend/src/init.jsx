@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { io } from 'socket.io-client';
 import { Provider } from 'react-redux';
 import filter from 'leo-profanity';
+import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { SocketContext } from './contexts/SocketProvider';
 import App from './components/App';
@@ -56,14 +57,23 @@ const init = async () => {
   socket.on('removeChannel', (payload) => {
     store.dispatch(actions.removeChannel(payload));
   });
+
+  const rollbarConfig = {
+    accessToken: '79d708d1e94f41e796dfef83cc65f41b',
+    environment: 'testenv',
+  };
   return (
-    <Provider store={store}>
-      <I18nextProvider i18n={i18n}>
-        <SocketContext.Provider value={{ api }}>
-          <App />
-        </SocketContext.Provider>
-      </I18nextProvider>
-    </Provider>
+    <RollbarProvider config={rollbarConfig}>
+      <ErrorBoundary>
+        <Provider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <SocketContext.Provider value={{ api }}>
+              <App />
+            </SocketContext.Provider>
+          </I18nextProvider>
+        </Provider>
+      </ErrorBoundary>
+    </RollbarProvider>
   );
 };
 

@@ -6,6 +6,7 @@ import
   Modal,
 } from 'react-bootstrap';
 import * as Yup from 'yup';
+import filter from 'leo-profanity';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
@@ -45,7 +46,7 @@ const RenameModal = ({ handleClose }) => {
             action.setSubmitting(true);
             const { name } = value;
             const renameChannel = {
-              name,
+              name: filter.clean(name),
               id: currentChannel.id,
             };
             const data = await api.renameChannel(renameChannel);
@@ -54,7 +55,7 @@ const RenameModal = ({ handleClose }) => {
             handleClose();
           } catch (error) {
             action.setSubmitting(false);
-            toast.error('errors.network');
+            toast.error(t('errors.network'));
           }
         }}
         initialValues={{

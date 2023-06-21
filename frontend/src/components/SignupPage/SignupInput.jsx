@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import * as Yup from 'yup';
+import filter from 'leo-profanity';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -34,7 +35,7 @@ const SignupInput = () => {
       validationSchema={schema}
       onSubmit={(values, actions) => {
         const { username, password } = values;
-        axios.post(routes.signPath(), { username, password })
+        axios.post(routes.signPath(), { username: filter.clean(username), password })
           .then((response) => {
             setAuthError(false);
             actions.setSubmitting(true);

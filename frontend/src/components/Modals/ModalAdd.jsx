@@ -6,6 +6,7 @@ import
   Modal,
 } from 'react-bootstrap';
 import * as Yup from 'yup';
+import filter from 'leo-profanity';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
@@ -40,7 +41,7 @@ const ModalAdd = ({ handleClose }) => {
             action.setSubmitting(true);
             const { name } = value;
             const newChannel = {
-              name,
+              name: filter.clean(name),
               removable: true,
             };
             const data = await api.sendChannel(newChannel);
@@ -48,9 +49,8 @@ const ModalAdd = ({ handleClose }) => {
             toast.success(t('modals.channelAdd'));
             handleClose();
           } catch (error) {
-            console.log('err', error);
-            actions.setSubmitting(false);
-            toast.error('errors.network');
+            action.setSubmitting(false);
+            toast.error(t('errors.network'));
           }
         }}
         initialValues={{

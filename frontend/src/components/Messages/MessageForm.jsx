@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Formik } from 'formik';
+import filter from 'leo-profanity';
 import { useTranslation } from 'react-i18next';
 import { Form, Button } from 'react-bootstrap';
 import useAuth from '../../hooks/useAuth';
@@ -21,7 +22,7 @@ const MessageForm = ({ currentChannelId }) => {
           actions.setSubmitting(true);
           const { body } = value;
           const newMessage = {
-            body,
+            body: filter.clean(body),
             channelId: currentChannelId,
             username: user.username,
           };

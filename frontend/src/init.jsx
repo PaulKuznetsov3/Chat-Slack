@@ -3,6 +3,7 @@ import i18next from 'i18next';
 import { configureStore } from '@reduxjs/toolkit';
 import { io } from 'socket.io-client';
 import { Provider } from 'react-redux';
+import filter from 'leo-profanity';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { SocketContext } from './contexts/SocketProvider';
 import App from './components/App';
@@ -11,6 +12,9 @@ import reducer, { actions } from './slices/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const init = async () => {
+  const dictionaries = filter.getDictionary('ru');
+  filter.add(dictionaries);
+
   const i18n = i18next.createInstance();
   await i18n
     .use(initReactI18next)

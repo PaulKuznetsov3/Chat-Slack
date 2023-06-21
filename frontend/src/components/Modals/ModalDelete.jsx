@@ -27,8 +27,7 @@ const ModalDelete = ({ handleClose }) => {
       dispatch(actions.selectChannel(defaultChannel));
       handleClose();
     } catch (err) {
-      console.log('err', err);
-      toast.error('errors.network');
+      toast.error(t('errors.network'));
     }
   };
   return (

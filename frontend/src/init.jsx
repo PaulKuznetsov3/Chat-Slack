@@ -66,7 +66,6 @@ const init = async () => {
     captureUncaught: true,
     captureUnhandledRejections: true,
   };
-  
   return (
     <RollbarProvider config={rollbarConfig}>
       <ErrorBoundary>

@@ -14,17 +14,20 @@ import { selectors as channelsSelectors } from '../../slices/сhannelsInfo';
 const ModalDelete = ({ handleClose }) => {
   const { api } = useApi();
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
-  const channelId = useSelector((state) => state.modalsInfo.modal.target);
-  const [currentChannel] = channels.filter((channel) => channel.id === channelId);
+  const dispatch = useDispatch();
+  const deletedTargetChannelId = useSelector((state) => state.modalsInfo.modal.target);
+  const currentChannel = channels.find((channel) => channel.id === deletedTargetChannelId);
+  const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
   const defaultChannel = 1;
   const removeChannel = async () => {
     try {
       await api.deleteChannel(currentChannel);
-      dispatch(actions.removeChannel(currentChannel.id));
+      dispatch(actions.removeChannel(deletedTargetChannelId));
       toast.success(t('modals.removeChannel'));
-      dispatch(actions.selectChannel(defaultChannel));
+      if (currentChannelId === deletedTargetChannelId) {
+        dispatch(actions.selectChannel(defaultChannel));
+      }
       handleClose();
     } catch (err) {
       toast.error(t('errors.network'));

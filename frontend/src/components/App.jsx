@@ -9,9 +9,7 @@ import ErrorPage from '../routes/ErrorPage';
 import AuthProvider from '../contexts/AuthProvider';
 import useAuth from '../hooks/useAuth';
 import ChatNav from './ChatNav/ChatNav';
-import 'react-toastify/dist/ReactToastify.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../index.css';
+import routes from '../routes';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
@@ -29,11 +27,11 @@ const App = () => (
           <div className="d-flex flex-column h-100">
             <ChatNav />
             <Routes>
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="*" element={<ErrorPage />} />
+              <Route path={routes.login()} element={<Login />} />
+              <Route path={routes.signup()} element={<Signup />} />
+              <Route path={routes.error()} element={<ErrorPage />} />
               <Route
-                path="/"
+                path={routes.chat()}
                 element={(
                   <PrivateRoute>
                     <Chat />

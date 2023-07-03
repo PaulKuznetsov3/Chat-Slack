@@ -10,7 +10,6 @@ import { SocketContext } from './contexts/SocketProvider';
 import App from './components/App';
 import resources from './locales/index';
 import reducer, { actions } from './slices/index';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const init = async () => {
   const dictionaries = filter.getDictionary('ru');

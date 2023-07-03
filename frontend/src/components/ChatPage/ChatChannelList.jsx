@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button, Dropdown, ButtonGroup,
@@ -8,16 +8,29 @@ import { selectors as channelsSelectors } from '../../slices/сhannelsInfo';
 import { actions } from '../../slices';
 
 const ChatChannelsList = () => {
+  const chennelRef = useRef({});
+  const list = useRef();
   const { t } = useTranslation();
   const dicpatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
   const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
   const { selectChannel } = actions;
+  useEffect(() => {
+    // chennelRef.current.at(-1).scrollIntoView({ behavior: 'smooth' });
+    if (!chennelRef.current[currentChannelId]) {
+      return;
+    }
+    if (currentChannelId === 1) {
+      list.current.scrollTo(0, 0);
+      return;
+    }
+    chennelRef.current[currentChannelId].scrollIntoView();
+  }, [channels, currentChannelId]);
   return (
-    <ul id="channels-box" className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
+    <ul id="channels-box" ref={list} className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
       {channels.map((channel) => (
         !channel.removable ? (
-          <li key={channel.id} className="nav-item w-100">
+          <li key={channel.id} ref={(el) => { chennelRef.current[channel.id] = el; }} className="nav-item w-100">
             <Button type="button" onClick={() => dicpatch(selectChannel(channel.id))} variant={channel.id === currentChannelId ? 'secondary' : 'light'} className="w-100 rounded-0 text-start btn">
               <span className="me-1">#</span>
               {channel.name}
@@ -25,7 +38,7 @@ const ChatChannelsList = () => {
           </li>
         )
           : (
-            <li key={channel.id} className="nav-item w-100">
+            <li key={channel.id} ref={(el) => { chennelRef.current[channel.id] = el; }} className="nav-item w-100">
               <Dropdown as={ButtonGroup} className="d-flex dropdown btn-group">
                 <Button type="button" onClick={() => dicpatch(selectChannel(channel.id))} variant={channel.id === currentChannelId ? 'secondary' : 'light'} className="w-100 text-truncate rounded-0 text-start btn">
                   <span className="me-1">#</span>

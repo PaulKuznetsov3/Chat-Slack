@@ -43,7 +43,7 @@ export default {
       alt: 'Регистрация',
       userName: 'Имя пользователя',
       password: 'Пароль',
-      repidPassword: 'Подтвердтье пароль',
+      repidPassword: 'Подтвердите пароль',
       button: 'Зарегистрироваться',
     },
     nav: {
@@ -52,8 +52,8 @@ export default {
     },
     errorPage: {
       notFound: 'Страница не найдена',
-      mainPage: 'Но вы можете перейти',
-      goIn: 'на главную страницу',
+      mainPage: 'на главную страницу',
+      goIn: 'Но вы можете перейти',
     },
   },
 };

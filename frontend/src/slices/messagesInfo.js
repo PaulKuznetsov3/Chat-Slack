@@ -19,9 +19,7 @@ const slice = createSlice({
         messagesAdapter.addMany(state, payload.messages);
       })
       .addCase(channelsInfoActions.removeChannel, (state, { payload }) => {
-        console.log('a', payload);
         const chennelId = payload;
-        console.log('b', state.entities);
         const messages = Object.values(state.entities).filter((e) => e.id !== chennelId);
         messagesAdapter.setAll(state, messages);
       });

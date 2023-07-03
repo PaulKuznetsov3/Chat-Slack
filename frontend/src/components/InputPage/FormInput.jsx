@@ -32,7 +32,7 @@ const FormInrut = () => {
               return;
             }
             logIn({ username: response.data.username, token: response.data.token });
-            navigate('/');
+            navigate(routes.chat());
           })
           .catch((error) => {
             actions.setSubmitting(false);

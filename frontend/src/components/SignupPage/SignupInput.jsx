@@ -40,10 +40,9 @@ const SignupInput = () => {
             setAuthError(false);
             actions.setSubmitting(true);
             auth.logIn(response.data);
-            navigate('/');
+            navigate(routes.chat());
           })
           .catch((error) => {
-            console.log('catch', error.message);
             actions.setSubmitting(false);
             if (error.response.status === 409) {
               setAuthError(true);

@@ -7,14 +7,14 @@ import { Form, Button } from 'react-bootstrap';
 import useAuth from '../../hooks/useAuth';
 import { useApi } from '../../contexts/SocketProvider';
 
-const MessageForm = ({ currentChannelId }) => {
+const MessageForm = ({ messages, currentChannelId }) => {
   const inputRef = useRef();
   const { t } = useTranslation();
   const { user } = useAuth();
   const { api } = useApi();
   useEffect(() => {
     inputRef.current.focus();
-  }, [currentChannelId]);
+  }, [currentChannelId, messages]);
   return (
     <Formik
       onSubmit={async (value, actions) => {

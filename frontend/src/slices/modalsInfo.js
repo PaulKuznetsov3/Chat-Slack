@@ -16,7 +16,6 @@ const modalsSlice = createSlice({
   reducers: {
     openModal: (state, { payload }) => {
       const { type, target } = payload;
-      console.log('pa', payload);
       state.modal.show = true;
       state.modal.type = type;
       state.modal.target = target;

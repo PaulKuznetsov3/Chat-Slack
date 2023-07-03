@@ -11,7 +11,6 @@ const fetchData = createAsyncThunk(
       const response = await axios.get(routes.dataPath(), { headers: authHeader });
       return response.data;
     } catch (err) {
-      console.log('err', err);
       return err;
     }
   },
@@ -22,7 +21,6 @@ const channelsAdapter = createEntityAdapter();
 const initialState = channelsAdapter.getInitialState({
   currentChannelId: null,
 });
-
 const channelsSlice = createSlice({
   name: 'channelsInfo',
   initialState,

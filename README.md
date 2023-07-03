@@ -3,7 +3,6 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/9d25db522276f246f0be/maintainability)](https://codeclimate.com/github/PaulKuznetsov3/frontend-project-12/maintainability)
 
-[![hexlet-check](https://github.com/PaulKuznetsov3/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/PaulKuznetsov3/frontend-project-12/actions/workflows/hexlet-check.yml)
 
 ## Чат (Slack)
 аналог Slack-чата (очень упрощенная версия)

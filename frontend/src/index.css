@@ -28,8 +28,3 @@ code {
 .flx{
   display: flex;
 }
-.flx-end {
-  display: flex;
-  text-align: right;
-  justify-content: flex-end;
-}

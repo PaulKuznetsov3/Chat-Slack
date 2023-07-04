@@ -38,6 +38,7 @@ export default {
       deleteChannel: 'Удалить канал',
       assure: 'Уверены?',
       removeChannel: 'Канал удален',
+      channelName: 'Имя канала',
     },
     signup: {
       alt: 'Регистрация',

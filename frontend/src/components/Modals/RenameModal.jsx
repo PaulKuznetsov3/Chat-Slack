@@ -81,7 +81,9 @@ const RenameModal = ({ handleClose }) => {
                   value={values.name}
                   isInvalid={errors.name && touched.name}
                   ref={inputRef}
+                  id="name"
                 />
+                <Form.Label text="Имя канала" className="visually-hidden" htmlFor="name">{t('modals.channelName')}</Form.Label>
                 <Form.Control.Feedback type="invalid">
                   {errors.name && t(`${errors.name}`)}
                 </Form.Control.Feedback>

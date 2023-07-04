@@ -78,9 +78,8 @@ const ModalAdd = ({ handleClose }) => {
                   isInvalid={errors.name && touched.name}
                   ref={inputRef}
                   id="name"
-                  data-testid="input-body"
                 />
-                <Form.Label className="visually-hidden" htmlFor="name">Имя канала</Form.Label>
+                <Form.Label text="Имя канала" className="visually-hidden" htmlFor="name">Имя канала</Form.Label>
                 <Form.Control.Feedback type="invalid">
                   {errors.name === 'name must be at least 3 characters' && t('validation.length')}
                   {errors.name === 'name is a required field' && t('validation.required')}

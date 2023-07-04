@@ -47,6 +47,7 @@ const MessageForm = ({ messages, currentChannelId }) => {
         <Form onSubmit={handleSubmit} noValidate className="py-1 border rounded-2">
           <Form.Group className="input-group has-validation">
             <Form.Control
+              aria-label="Новое сообщение"
               autoFocus
               name="body"
               placeholder={t('messages.enterMessage')}

@@ -44,7 +44,11 @@ const ChatChannelsList = () => {
                   <span className="me-1">#</span>
                   {channel.name}
                 </Button>
-                <Dropdown.Toggle split id="" variant={channel.id === currentChannelId ? 'secondary' : 'light'} />
+                <Dropdown.Toggle split id="" variant={channel.id === currentChannelId ? 'secondary' : 'light'}>
+                  <span className="visually-hidden">
+                    Управление каналом
+                  </span>
+                </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => dicpatch(actions.openModal({ type: 'del', target: channel.id }))}>{t('modals.delete')}</Dropdown.Item>
                   <Dropdown.Item onClick={() => dicpatch(actions.openModal({ type: 'ren', target: channel.id }))}>{t('modals.rename')}</Dropdown.Item>

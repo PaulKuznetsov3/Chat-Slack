@@ -78,6 +78,7 @@ const ModalAdd = ({ handleClose }) => {
                   isInvalid={errors.name && touched.name}
                   ref={inputRef}
                   id="name"
+                  data-testid="input-body"
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.name === 'name must be at least 3 characters' && t('validation.length')}

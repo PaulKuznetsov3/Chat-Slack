@@ -69,7 +69,7 @@ const ModalAdd = ({ handleClose }) => {
             <Modal.Body>
               <Form.Group className="input-group has-validation">
                 <Form.Control
-                  text="Имя канала"
+                  type="text"
                   name="name"
                   className="mb-2"
                   disabled={isSubmitting}

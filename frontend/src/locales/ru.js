@@ -37,7 +37,7 @@ export default {
       channelAdd: 'Канал создан',
       deleteChannel: 'Удалить канал',
       assure: 'Уверены?',
-      removeChannel: 'Канал удален',
+      removeChannel: 'Канал удалён',
       channelName: 'Имя канала',
     },
     signup: {

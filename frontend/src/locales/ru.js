@@ -34,7 +34,7 @@ export default {
       rename: 'Переименовать',
       renameChannel: 'Переименовать',
       channelRename: 'Канал переименован',
-      channelAdd: 'Канал добавлен',
+      channelAdd: 'Канал создан',
       deleteChannel: 'Удалить канал',
       assure: 'Уверены?',
       removeChannel: 'Канал удален',

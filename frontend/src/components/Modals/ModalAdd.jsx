@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { actions } from '../../slices';
+import useAuth from '../../hooks/useAuth';
 import { useApi } from '../../contexts/SocketProvider';
 import { selectors as channelsSelectors } from '../../slices/сhannelsInfo';
 
@@ -25,6 +26,7 @@ const ModalAdd = ({ handleClose }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const inputRef = useRef();
+  const { logOut } = useAuth();
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -51,6 +53,7 @@ const ModalAdd = ({ handleClose }) => {
           } catch (error) {
             action.setSubmitting(false);
             toast.error(t('errors.network'));
+            logOut();
           }
         }}
         initialValues={{

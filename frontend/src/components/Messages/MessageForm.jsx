@@ -10,7 +10,7 @@ import { useApi } from '../../contexts/SocketProvider';
 const MessageForm = ({ messages, currentChannelId }) => {
   const inputRef = useRef();
   const { t } = useTranslation();
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
   const { api } = useApi();
   useEffect(() => {
     inputRef.current.focus();
@@ -30,7 +30,8 @@ const MessageForm = ({ messages, currentChannelId }) => {
           actions.resetForm();
         } catch (error) {
           actions.setSubmitting(false);
-          toast.error('errors.network');
+          toast.error(t('errors.network'));
+          logOut();
         }
       }}
       initialValues={{

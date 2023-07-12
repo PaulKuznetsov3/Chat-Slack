@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../slices';
+import useAuth from '../../hooks/useAuth';
 import { useApi } from '../../contexts/SocketProvider';
 import { selectors as channelsSelectors } from '../../slices/сhannelsInfo';
 
@@ -16,6 +17,7 @@ const ModalDelete = ({ handleClose }) => {
   const { t } = useTranslation();
   const channels = useSelector(channelsSelectors.selectAll);
   const dispatch = useDispatch();
+  const { logOut } = useAuth();
   const deletedTargetChannelId = useSelector((state) => state.modalsInfo.modal.target);
   const currentChannel = channels.find((channel) => channel.id === deletedTargetChannelId);
   const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
@@ -31,6 +33,7 @@ const ModalDelete = ({ handleClose }) => {
       handleClose();
     } catch (err) {
       toast.error(t('errors.network'));
+      logOut();
     }
   };
   return (

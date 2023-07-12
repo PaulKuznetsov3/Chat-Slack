@@ -36,7 +36,12 @@ const FormInrut = () => {
           })
           .catch((error) => {
             actions.setSubmitting(false);
-            if (error.response.status === 401) {
+            if (error === 'AxiosError') {
+              setAuthError(true);
+              inputRef.current.select();
+              toast.error(t('errors.network'));
+            }
+            if (error.response?.status === 401) {
               setAuthError(true);
               inputRef.current.select();
             } else {

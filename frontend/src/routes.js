@@ -7,5 +7,4 @@ export default {
   chat: () => '/',
   login: () => 'login',
   signup: () => 'signup',
-  error: () => '*',
 };

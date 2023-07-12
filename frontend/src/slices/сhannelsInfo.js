@@ -1,17 +1,25 @@
 /* eslint-disable no-param-reassign */
 
-import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  createSlice, createEntityAdapter, createAsyncThunk, miniSerializeError,
+} from '@reduxjs/toolkit';
 import axios from 'axios';
 import routes from '../routes';
 
 const fetchData = createAsyncThunk(
   'chennelsInfo/setInitialState',
-  async (authHeader) => {
+  async (authHeader, { rejectWithValue }) => {
     try {
       const response = await axios.get(routes.dataPath(), { headers: authHeader });
       return response.data;
-    } catch (err) {
-      return err;
+    } catch (error) {
+      if (error.response) {
+        return rejectWithValue(error.response);
+      }
+      if (error.isAxiosError) {
+        return rejectWithValue('AxiosError');
+      }
+      return rejectWithValue(miniSerializeError(error));
     }
   },
 );
@@ -19,7 +27,7 @@ const fetchData = createAsyncThunk(
 const channelsAdapter = createEntityAdapter();
 
 const initialState = channelsAdapter.getInitialState({
-  currentChannelId: null,
+  currentChannelId: null, loadingStatus: 'idle', error: null,
 });
 const channelsSlice = createSlice({
   name: 'channelsInfo',
@@ -35,9 +43,17 @@ const channelsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchData.pending, (state) => {
+        state.loadingStatus = 'loading';
+        state.error = null;
+      })
       .addCase(fetchData.fulfilled, (state, { payload }) => {
         channelsAdapter.addMany(state, payload.channels);
         state.currentChannelId = payload.currentChannelId;
+      })
+      .addCase(fetchData.rejected, (state, { payload }) => {
+        state.loadingStatus = 'failed';
+        state.error = payload;
       });
   },
 });

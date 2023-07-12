@@ -29,7 +29,7 @@ const App = () => (
             <Routes>
               <Route path={routes.login()} element={<Login />} />
               <Route path={routes.signup()} element={<Signup />} />
-              <Route path={routes.error()} element={<ErrorPage />} />
+              <Route path="*" element={<ErrorPage />} />
               <Route
                 path={routes.chat()}
                 element={(

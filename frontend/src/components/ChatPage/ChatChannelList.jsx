@@ -9,25 +9,19 @@ import { actions } from '../../slices';
 
 const ChatChannelsList = () => {
   const chennelRef = useRef({});
-  const list = useRef();
   const { t } = useTranslation();
   const dicpatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
   const currentChannelId = useSelector((state) => state.channelsInfo.currentChannelId);
   const { selectChannel } = actions;
   useEffect(() => {
-    // chennelRef.current.at(-1).scrollIntoView({ behavior: 'smooth' });
     if (!chennelRef.current[currentChannelId]) {
-      return;
-    }
-    if (currentChannelId === 1) {
-      list.current.scrollTo(0, 0);
       return;
     }
     chennelRef.current[currentChannelId].scrollIntoView();
   }, [channels, currentChannelId]);
   return (
-    <ul id="channels-box" ref={list} className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
+    <ul id="channels-box" className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
       {channels.map((channel) => (
         !channel.removable ? (
           <li key={channel.id} ref={(el) => { chennelRef.current[channel.id] = el; }} className="nav-item w-100">

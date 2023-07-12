@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
+import useAuth from '../../hooks/useAuth';
 import { actions } from '../../slices';
 import { useApi } from '../../contexts/SocketProvider';
 import { selectors as channelsSelectors } from '../../slices/сhannelsInfo';
@@ -28,6 +29,7 @@ const RenameModal = ({ handleClose }) => {
   const { api } = useApi();
   const { t } = useTranslation();
   const inputRef = useRef();
+  const { logOut } = useAuth();
   useEffect(() => {
     inputRef.current.select();
   }, []);
@@ -56,6 +58,7 @@ const RenameModal = ({ handleClose }) => {
           } catch (error) {
             action.setSubmitting(false);
             toast.error(t('errors.network'));
+            logOut();
           }
         }}
         initialValues={{

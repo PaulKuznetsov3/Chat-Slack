@@ -20,12 +20,13 @@ export default {
       link: 'Регистрация',
     },
     channel: 'Каналы',
+    channelManagement: 'Управление каналом',
     messages: {
       messageCount_one: '{{count}} сообщение',
       messageCount_few: '{{count}} сообщения',
       messageCount_many: '{{count}} сообщений',
       enterMessage: 'Bведите сообщение...',
-      newMessage: 'Новое сообщение...',
+      newMessage: 'Новое сообщение',
     },
     modals: {
       header: 'Добавить канал',

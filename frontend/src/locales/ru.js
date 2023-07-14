@@ -25,6 +25,7 @@ export default {
       messageCount_few: '{{count}} сообщения',
       messageCount_many: '{{count}} сообщений',
       enterMessage: 'Bведите сообщение...',
+      newMessage: 'Новое сообщение...',
     },
     modals: {
       header: 'Добавить канал',

@@ -5,6 +5,7 @@ import {
 } from 'react-bootstrap';
 import avatar from '../../assets/avatar.jpg';
 import FormInrut from './FormInput';
+import routes from '../../routes';
 
 const InputPage = () => {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ const InputPage = () => {
             <Card.Footer className="p-4">
               <div className="text-center">
                 <span>{t('inputPage.text')}</span>
-                <a href="/signup">{t('inputPage.link')}</a>
+                <a href={routes.signup()}>{t('inputPage.link')}</a>
               </div>
             </Card.Footer>
           </Card>

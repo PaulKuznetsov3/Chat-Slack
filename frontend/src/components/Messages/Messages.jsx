@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { selectors as channelsSelectors } from '../../slices/сhannelsInfo';
@@ -7,6 +7,7 @@ import MessageForm from './MessageForm';
 import useAuth from '../../hooks/useAuth';
 
 const Messages = () => {
+  const list = useRef({});
   const { user } = useAuth();
   const { t } = useTranslation();
   const messages = useSelector(messagesSelectors.selectAll);
@@ -15,6 +16,14 @@ const Messages = () => {
   const currentChannel = channels.filter(({ id }) => id === currentChannelId)
     .map(({ name }) => name);
   const messagesChannel = messages.filter((message) => message.channelId === currentChannelId);
+  const endMessage = messagesChannel[messagesChannel.length - 1];
+  const endMessId = endMessage?.id;
+  useEffect(() => {
+    if (list.current[endMessId] === undefined) {
+      return;
+    }
+    list.current[endMessId].scrollIntoView();
+  }, [messagesChannel, endMessId, endMessage]);
   return (
     <div className="col p-0 h-100">
       <div className="d-flex flex-column h-100">
@@ -30,7 +39,7 @@ const Messages = () => {
         </div>
         <div id="messages-box" className="chat-messages overflow-auto px-5">
           {messagesChannel.length !== 0 ? messagesChannel.map((message) => (
-            <div key={message.id} className="flx">
+            <div key={message.id} className="flx" ref={(el) => { list.current[message?.id] = el; }}>
               <div className={`${message.username === user.username ? 'text-break mb-2 bg-bl border-radius flx-end' : 'text-break mb-2 border-radius bg-gr'}`}>
                 <b>{message.username}</b>
                 {`: ${message.body}`}

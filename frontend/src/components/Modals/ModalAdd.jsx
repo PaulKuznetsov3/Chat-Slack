@@ -18,7 +18,8 @@ import { selectors as channelsSelectors } from '../../slices/сhannelsInfo';
 
 const schema = (channels) => Yup.object().shape({
   name: Yup.string().required().min(3).max(20)
-    .notOneOf(channels),
+    .notOneOf(channels)
+    .trim(),
 });
 
 const ModalAdd = ({ handleClose }) => {
@@ -81,6 +82,7 @@ const ModalAdd = ({ handleClose }) => {
                   isInvalid={errors.name && touched.name}
                   ref={inputRef}
                   id="name"
+                  autoComplete="off"
                 />
                 <Form.Label text="Имя канала" className="visually-hidden" htmlFor="name">{t('modals.channelName')}</Form.Label>
                 <Form.Control.Feedback type="invalid">

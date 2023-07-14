@@ -21,7 +21,8 @@ const schema = (channels) => Yup.object().shape({
     .required('validation.required')
     .min(3, 'validation.length')
     .max(20, 'validation.length')
-    .notOneOf(channels, 'validation.unique'),
+    .notOneOf(channels, 'validation.unique')
+    .trim(),
 });
 
 const RenameModal = ({ handleClose }) => {
@@ -85,8 +86,9 @@ const RenameModal = ({ handleClose }) => {
                   isInvalid={errors.name && touched.name}
                   ref={inputRef}
                   id="name"
+                  autoComplete="off"
                 />
-                <Form.Label text="Имя канала" className="visually-hidden" htmlFor="name">{t('modals.channelName')}</Form.Label>
+                <Form.Label text={t('modals.channelName')} className="visually-hidden" htmlFor="name">{t('modals.channelName')}</Form.Label>
                 <Form.Control.Feedback type="invalid">
                   {errors.name && t(`${errors.name}`)}
                 </Form.Control.Feedback>

@@ -40,7 +40,7 @@ const ChatChannelsList = () => {
                 </Button>
                 <Dropdown.Toggle split id="" variant={channel.id === currentChannelId ? 'secondary' : 'light'}>
                   <span className="visually-hidden">
-                    Управление каналом
+                    {t('channelManagement')}
                   </span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
